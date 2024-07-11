@@ -7,13 +7,14 @@ use Illuminate\Validation\Rule;
 
 class UpdateRequest extends FormRequest
 {
-   /**
+    /**
      * Get the validation rules that apply to the request.
-    */
+     */
     public function rules(): array
     {
-        $categoryId = $this->input('category_id');
-        return [
+        $categoryId = $this->route()->category;
+            return [
+            'name' => [Rule::unique('categories')->ignore($categoryId)],
             'status' => 'in:0,1'
         ];
     }

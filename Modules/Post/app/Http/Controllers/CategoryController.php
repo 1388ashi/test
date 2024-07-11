@@ -38,9 +38,9 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category): JsonResponse
+    public function update(UpdateRequest $request,$id)
     {
-        dd($category);
+        $category = Category::query()->findOrFail($id);
         $category->update([
             'name' => $request->name,
             'status' => $request->input('status'),
